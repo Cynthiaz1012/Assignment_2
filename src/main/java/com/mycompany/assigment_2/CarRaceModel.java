@@ -18,4 +18,52 @@ public class CarRaceModel {
     private double speed;
     private Color color;
     
+    public CarRaceModel(String type, int number, double x, double y, double speed, Color color) {
+        this.type = type;
+        this.number = number;
+        this.x = x;
+        this.y = y;
+        this.speed = speed;
+        this.color = color;
+    }
+    
+    
+    // Getter methods
+    public String getType() {
+        return type;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public double getSpeed() {
+        return speed;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    // Setter methods
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
+  
 }

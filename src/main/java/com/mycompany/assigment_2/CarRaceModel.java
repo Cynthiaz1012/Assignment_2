@@ -65,5 +65,12 @@ public class CarRaceModel {
     public void setSpeed(double speed) {
         this.speed = speed;
     }
+    
+    
+   
+    public void updatePosition() {
+        x += speed;
+    }
+
   
 }

@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.Pane;
 import java.util.ArrayList;
+import javafx.animation.Animation;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -53,6 +54,8 @@ public class CarRaceController {
     private ArrayList<Group> carGroups = new ArrayList<>();
     
     private ArrayList<TranslateTransition> animations = new ArrayList<>();
+    
+    private ArrayList<CarRaceModel> finishOrder = new ArrayList<>();
 
     private void switchToSecondary() throws IOException {
         App.setRoot("secondary");
@@ -116,13 +119,22 @@ public class CarRaceController {
     
     // Create animations for all cars
     private void createAnimations() {
-    for (int i = 0; i < carGroups.size(); i++) {
-        TranslateTransition animation = new TranslateTransition();
-        animation.setNode(carGroups.get(i));
-        animation.setDuration(Duration.seconds(10 / cars.get(i).getSpeed()));
-        animation.setByX(500);
+        for (int i = 0; i < carGroups.size(); i++) {
+            TranslateTransition animation = new TranslateTransition();
+            CarRaceModel car = cars.get(i);
+            animation.setNode(carGroups.get(i));
+            animation.setDuration(Duration.seconds(10 / car.getSpeed()));
+            animation.setByX(500);
 
-        animations.add(animation);
+            animation.setOnFinished(e -> {
+                finishOrder.add(car);
+
+                if (finishOrder.size() == cars.size()) {
+                    showResults();
+                }
+            });
+
+            animations.add(animation);
         }
     }
     
@@ -132,6 +144,7 @@ public class CarRaceController {
             animations.get(i).play();
         }
     }
+    
     
      @FXML
     private void pauseRace() {

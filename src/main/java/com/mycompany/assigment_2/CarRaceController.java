@@ -138,4 +138,12 @@ public class CarRaceController {
             animations.get(i).pause();
         }
     }
+    
+    @FXML
+    private void resetRace() {
+        for (int i = 0; i < animations.size(); i++) {
+            animations.get(i).stop();
+            animations.get(i).getNode().setTranslateX(0);
+        }
+    }
 }

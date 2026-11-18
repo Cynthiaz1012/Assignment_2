@@ -46,7 +46,7 @@
                      <children>
                         <Button fx:id="startButton" mnemonicParsing="false" onAction="#startRace" prefHeight="35.0" prefWidth="90.0" text="Start" />
                         <Button fx:id="pauseButton" mnemonicParsing="false" onAction="#pauseRace" prefHeight="35.0" prefWidth="90.0" text="Pause" />
-                        <Button fx:id="resetButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="90.0" text="Reset" />
+                        <Button fx:id="resetButton" mnemonicParsing="false" onAction="#resetRace" prefHeight="35.0" prefWidth="90.0" text="Reset" />
                      </children>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">

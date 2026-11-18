@@ -159,6 +159,27 @@ public class CarRaceController {
             animations.get(i).stop();
             animations.get(i).getNode().setTranslateX(0);
         }
+        
+        finishOrder.clear();
+        
+        resultsTitleLabel.setText("Race Results");
+        firstPlaceLabel.setText("1st Place: ");
+        secondPlaceLabel.setText("2nd Place: ");
+        thirdPlaceLabel.setText("3rd Place: ");
+        fourthPlaceLabel.setText("4th Place: ");
+        winnerLabel.setText("Winner: ");
+        raceFinishedLabel.setText("");
+    }
+    
+    // Show race results
+    private void showResults() {
+        resultsTitleLabel.setText("Race Results");
+        firstPlaceLabel.setText("1st Place: Car " + finishOrder.get(0).getNumber());
+        secondPlaceLabel.setText("2nd Place: Car " + finishOrder.get(1).getNumber());
+        thirdPlaceLabel.setText("3rd Place: Car " + finishOrder.get(2).getNumber());
+        fourthPlaceLabel.setText("4th Place: Car " + finishOrder.get(3).getNumber());
+        winnerLabel.setText("Winner: Car " + finishOrder.get(0).getNumber());
+        raceFinishedLabel.setText("Race Finished!");
     }
     
     private void setupSpeedSlider() {

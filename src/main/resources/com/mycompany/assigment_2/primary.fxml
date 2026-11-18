@@ -45,7 +45,7 @@
                   <HBox prefHeight="40.0" prefWidth="200.0" spacing="10.0">
                      <children>
                         <Button fx:id="startButton" mnemonicParsing="false" onAction="#startRace" prefHeight="35.0" prefWidth="90.0" text="Start" />
-                        <Button fx:id="pauseButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="90.0" text="Pause" />
+                        <Button fx:id="pauseButton" mnemonicParsing="false" onAction="#pauseRace" prefHeight="35.0" prefWidth="90.0" text="Pause" />
                         <Button fx:id="resetButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="90.0" text="Reset" />
                      </children>
                   </HBox>

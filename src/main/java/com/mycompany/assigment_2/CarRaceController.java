@@ -14,6 +14,8 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.animation.TranslateTransition;
+import javafx.util.Duration;
 
 public class CarRaceController {
 
@@ -49,12 +51,13 @@ public class CarRaceController {
     private ArrayList<CarRaceModel> cars = new ArrayList<>();
 
     private ArrayList<Group> carGroups = new ArrayList<>();
+    
+    private ArrayList<TranslateTransition> animations = new ArrayList<>();
 
     private void switchToSecondary() throws IOException {
         App.setRoot("secondary");
     }
     
-    @FXML
     public void initialize() {
         cars.add(new CarRaceModel("Sports Car", 23, 60, 20, 1.5, Color.BLUE));
         cars.add(new CarRaceModel("Sports Car", 45, 60, 95, 1.8, Color.RED));
@@ -66,6 +69,7 @@ public class CarRaceController {
             carGroups.add(car);
             racePane.getChildren().add(car);
         }
+        createAnimations();
     }
     
     private Group createCar(CarRaceModel car) {
@@ -108,4 +112,24 @@ public class CarRaceController {
 
         return group;
     }
+    
+    // Create animations for all cars
+    private void createAnimations() {
+    for (int i = 0; i < carGroups.size(); i++) {
+        TranslateTransition animation = new TranslateTransition();
+        animation.setNode(carGroups.get(i));
+        animation.setDuration(Duration.seconds(10 / cars.get(i).getSpeed()));
+        animation.setByX(500);
+
+        animations.add(animation);
+        }
+    }
+    
+    @FXML
+    private void startRace() {
+        for (int i = 0; i < animations.size(); i++) {
+            animations.get(i).play();
+        }
+    }
+    
 }

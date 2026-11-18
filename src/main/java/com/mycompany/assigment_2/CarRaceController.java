@@ -132,4 +132,10 @@ public class CarRaceController {
         }
     }
     
+     @FXML
+    private void pauseRace() {
+        for (int i = 0; i < animations.size(); i++) {
+            animations.get(i).pause();
+        }
+    }
 }

@@ -70,6 +70,7 @@ public class CarRaceController {
             racePane.getChildren().add(car);
         }
         createAnimations();
+        setupSpeedSlider();
     }
     
     private Group createCar(CarRaceModel car) {
@@ -145,5 +146,17 @@ public class CarRaceController {
             animations.get(i).stop();
             animations.get(i).getNode().setTranslateX(0);
         }
+    }
+    
+    private void setupSpeedSlider() {
+        speedSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            double speed = newValue.doubleValue();
+            speedValueLabel.setText(speed + "x");
+            for (int i = 0; i < animations.size(); i++) {
+                animations.get(i).setDuration(
+                    Duration.seconds(10 / (cars.get(i).getSpeed() * speed))
+                );
+            }
+        });
     }
 }

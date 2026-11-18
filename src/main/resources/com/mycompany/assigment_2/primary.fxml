@@ -1,16 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Button?>
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.assigment_2.PrimaryController">
-   <children>
-      <Label text="Primary View" />
-      <Button fx:id="primaryButton" text="Switch to Secondary View" onAction="#switchToSecondary"/>
-   </children>
-   <padding>
-      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-   </padding>
-</VBox>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.assigment_2.CarRaceController">
+   <center>
+      <Pane fx:id="racePane" prefHeight="300.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#46515b" height="298.0" stroke="#46515b" strokeType="INSIDE" width="900.0" />
+            <Line endX="845.0" endY="75.0" startX="55.0" startY="75.0" stroke="WHITE" strokeWidth="2.0" style="-fx-stroke-dash-array: 10 10;" />
+            <Line endX="845.0" endY="150.0" startX="55.0" startY="150.0" stroke="WHITE" strokeWidth="2.0" style="-fx-stroke-dash-array: 10 10;" />
+            <Line endX="845.0" endY="225.0" startX="55.0" startY="225.0" stroke="WHITE" strokeWidth="2.0" style="-fx-stroke-dash-array: 10 10;" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#176b35" height="298.0" stroke="#176b35" strokeType="INSIDE" width="55.0" />
+            <Label alignment="CENTER" layoutX="20.0" layoutY="65.0" prefHeight="200.0" prefWidth="1.0" text="STARTING" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#176b35" height="298.0" stroke="#176b35" strokeType="INSIDE" width="55.0" x="845.0" />
+            <Label alignment="CENTER" layoutX="865.0" layoutY="65.0" prefHeight="180.0" prefWidth="1.0" text="ARRIVAL" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </center>
+   <bottom>
+      <HBox prefHeight="190.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="420.0" spacing="10.0">
+               <children>
+                  <HBox prefHeight="40.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <Button fx:id="startButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="90.0" text="Start" />
+                        <Button fx:id="pauseButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="90.0" text="Pause" />
+                        <Button fx:id="resetButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="90.0" text="Reset" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="speedLabel" text="Simulation Speed" />
+                        <Slider fx:id="speedSlider" max="2.0" min="0.5" prefWidth="180.0" value="1.0" />
+                        <Label fx:id="speedValueLabel" text="1.0x" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="420.0" spacing="10.0">
+               <children>
+                  <Label fx:id="raceFinishedLabel" text="🏆 Race Finished!" />
+                  <Label fx:id="winnerLabel" text="Congratulations! Car #88 (Yellow) is the winner!" />
+                  <Label fx:id="resultsTitleLabel" text="Final Results:" />
+                  <GridPane>
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label fx:id="firstPlaceLabel" text="1st - Car #88 (Yellow)" />
+                        <Label fx:id="secondPlaceLabel" text="2nd - Car #45 (Red)" GridPane.rowIndex="1" />
+                        <Label fx:id="thirdPlaceLabel" text="3rd - Car #78 (Green)" GridPane.rowIndex="2" />
+                        <Label fx:id="fourthPlaceLabel" text="4th - Car #23 (Blue)" GridPane.rowIndex="3" />
+                     </children>
+                  </GridPane>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>

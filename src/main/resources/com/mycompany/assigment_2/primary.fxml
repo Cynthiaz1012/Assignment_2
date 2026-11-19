@@ -42,28 +42,28 @@
          <children>
             <VBox prefHeight="200.0" prefWidth="420.0" spacing="10.0">
                <children>
-                  <HBox prefHeight="40.0" prefWidth="200.0" spacing="10.0">
+                  <HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <Button fx:id="startButton" mnemonicParsing="false" onAction="#startRace" prefHeight="35.0" prefWidth="90.0" text="Start" />
-                        <Button fx:id="pauseButton" mnemonicParsing="false" onAction="#pauseRace" prefHeight="35.0" prefWidth="90.0" text="Pause" />
-                        <Button fx:id="resetButton" mnemonicParsing="false" onAction="#resetRace" prefHeight="35.0" prefWidth="90.0" text="Reset" />
+                        <Button fx:id="startButton" alignment="CENTER" mnemonicParsing="false" onAction="#startRace" prefHeight="35.0" prefWidth="90.0" style="-fx-background-color: #2196F3;" text="Start" textFill="WHITE" />
+                        <Button fx:id="pauseButton" mnemonicParsing="false" onAction="#pauseRace" prefHeight="35.0" prefWidth="90.0" style="-fx-background-color: #607D8B;" text="Pause" textFill="WHITE" />
+                        <Button fx:id="resetButton" mnemonicParsing="false" onAction="#resetRace" prefHeight="35.0" prefWidth="90.0" style="-fx-background-color: #F44336;" text="Reset" textFill="WHITE" />
                      </children>
                   </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="speedLabel" text="Simulation Speed" />
+                        <Label fx:id="speedLabel" contentDisplay="CENTER" text="Simulation Speed" />
                         <Slider fx:id="speedSlider" max="2.0" min="0.5" prefWidth="180.0" value="1.0" />
                         <Label fx:id="speedValueLabel" text="1.0x" />
                      </children>
                   </HBox>
                </children>
             </VBox>
-            <VBox prefHeight="200.0" prefWidth="420.0" spacing="10.0">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="420.0" spacing="10.0">
                <children>
                   <Label fx:id="raceFinishedLabel" />
-                  <Label fx:id="winnerLabel" />
                   <Label fx:id="resultsTitleLabel" text="Final Results:" />
-                  <GridPane>
+                  <Label fx:id="winnerLabel" />
+                  <GridPane alignment="CENTER">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -75,7 +75,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label fx:id="firstPlaceLabel" text="1st - " />
+                        <Label fx:id="firstPlaceLabel" contentDisplay="CENTER" text="1st - " />
                         <Label fx:id="secondPlaceLabel" text="2nd - " GridPane.rowIndex="1" />
                         <Label fx:id="thirdPlaceLabel" text="3rd - " GridPane.rowIndex="2" />
                         <Label fx:id="fourthPlaceLabel" text="4th - " GridPane.rowIndex="3" />

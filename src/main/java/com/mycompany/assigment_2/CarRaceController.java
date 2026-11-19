@@ -183,11 +183,19 @@ public class CarRaceController {
     
     @FXML
     private void resetRace() {
+
+        // Reset car positions
+        for (int i = 0; i < animations.size(); i++) {
+            animations.get(i).stop();
+            animations.get(i).getNode().setTranslateX(0);
+        }
+
+        // Reset wheel rotations
         for (int i = 0; i < wheelAnimations.size(); i++) {
             wheelAnimations.get(i).stop();
             wheelAnimations.get(i).getNode().setRotate(0);
         }
-        
+
         finishOrder.clear();
         resultsTitleLabel.setText("Race Results");
         firstPlaceLabel.setText("1st Place: ");

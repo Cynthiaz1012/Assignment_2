@@ -60,8 +60,8 @@
             </VBox>
             <VBox prefHeight="200.0" prefWidth="420.0" spacing="10.0">
                <children>
-                  <Label fx:id="raceFinishedLabel" text="🏆 Race Finished!" />
-                  <Label fx:id="winnerLabel" text="Congratulations! Car #88 (Yellow) is the winner!" />
+                  <Label fx:id="raceFinishedLabel" />
+                  <Label fx:id="winnerLabel" />
                   <Label fx:id="resultsTitleLabel" text="Final Results:" />
                   <GridPane>
                     <columnConstraints>
@@ -75,10 +75,10 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label fx:id="firstPlaceLabel" text="1st - Car #88 (Yellow)" />
-                        <Label fx:id="secondPlaceLabel" text="2nd - Car #45 (Red)" GridPane.rowIndex="1" />
-                        <Label fx:id="thirdPlaceLabel" text="3rd - Car #78 (Green)" GridPane.rowIndex="2" />
-                        <Label fx:id="fourthPlaceLabel" text="4th - Car #23 (Blue)" GridPane.rowIndex="3" />
+                        <Label fx:id="firstPlaceLabel" text="1st - " />
+                        <Label fx:id="secondPlaceLabel" text="2nd - " GridPane.rowIndex="1" />
+                        <Label fx:id="thirdPlaceLabel" text="3rd - " GridPane.rowIndex="2" />
+                        <Label fx:id="fourthPlaceLabel" text="4th - " GridPane.rowIndex="3" />
                      </children>
                   </GridPane>
                </children>

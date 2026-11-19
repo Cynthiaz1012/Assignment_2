@@ -8,7 +8,8 @@ import javafx.scene.paint.Color;
 
 /**
  *
- * @author OuOcw
+ * @author Cynthia Zhang
+ * github:https://github.com/Cynthiaz1012/Assignment_2
  */
 public class CarRaceModel {
     private String type;
@@ -71,6 +72,5 @@ public class CarRaceModel {
     public void updatePosition() {
         x += speed;
     }
-
-  
 }
+

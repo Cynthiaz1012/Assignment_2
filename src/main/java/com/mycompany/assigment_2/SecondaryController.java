@@ -15,16 +15,8 @@ public class SecondaryController {
 
     @FXML
     private ImageView carImageView;
-
     private int currentCar = 0;
-
-    private String[] carImages = {
-        "car23.png",
-        "car45.png",
-        "car78.png",
-        "car88.png"
-    };
-
+    private String[] carImages = {"car23.png", "car45.png", "car78.png", "car88.png"};
     private Timeline slideshow;
     private MediaPlayer musicPlayer;
 
@@ -32,8 +24,8 @@ public class SecondaryController {
     public void initialize() {
         showCar();
 
+        // Create a slideshow that changes the image every 3 seconds
         slideshow = new Timeline(new KeyFrame(Duration.seconds(3), e -> {
-
                 if (currentCar < carImages.length - 1) {
                     currentCar++;
                     showCar();
@@ -41,6 +33,7 @@ public class SecondaryController {
             })
         );
 
+        // Switch to the main screen when the slideshow finishes
         slideshow.setCycleCount(carImages.length);
         slideshow.setOnFinished(e -> {
             try {
@@ -50,6 +43,7 @@ public class SecondaryController {
             }
         });
 
+        // Load and play background music
         String musicPath = getClass().getResource("/com/mycompany/assigment_2/car_race_music.wav").toExternalForm();
         Media music = new Media(musicPath);
         musicPlayer = new MediaPlayer(music);
@@ -57,6 +51,7 @@ public class SecondaryController {
         musicPlayer.play();
     }
 
+    // Display the current car image
     private void showCar() {
         String imagePath = getClass().getResource("/com/mycompany/assigment_2/" + carImages[currentCar]).toExternalForm();
         Image image = new Image(imagePath);

@@ -67,10 +67,7 @@ public class CarRaceModel {
         this.speed = speed;
     }
     
-    
-   
     public void updatePosition() {
         x += speed;
     }
 }
-

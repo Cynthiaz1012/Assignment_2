@@ -1,6 +1,5 @@
 package com.mycompany.assigment_2;
 
-import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -18,7 +17,6 @@ import javafx.animation.TranslateTransition;
 import javafx.util.Duration;
 import javafx.animation.RotateTransition;
 import javafx.animation.Interpolator;
-
 
 public class CarRaceController {
 
@@ -163,15 +161,17 @@ public class CarRaceController {
     
     @FXML
     private void startRace() {
-
+        // Do not start again if the race is finished
         if (raceFinished) {
             return;
         }
 
+        // Start all car animations
         for (int i = 0; i < animations.size(); i++) {
             animations.get(i).play();
         }
 
+        // Start all wheel animations
         for (int i = 0; i < wheelAnimations.size(); i++) {
             wheelAnimations.get(i).play();
         }
@@ -180,10 +180,12 @@ public class CarRaceController {
     
     @FXML
     private void pauseRace() {
+        // Pause all car animations
         for (int i = 0; i < animations.size(); i++) {
             animations.get(i).pause();
         }
 
+         // Pause all wheel animations
         for (int i = 0; i < wheelAnimations.size(); i++) {
             wheelAnimations.get(i).pause();
         }
@@ -191,7 +193,6 @@ public class CarRaceController {
     
     @FXML
     private void resetRace() {
-
         // Reset car positions
         for (int i = 0; i < animations.size(); i++) {
             animations.get(i).stop();
@@ -204,6 +205,7 @@ public class CarRaceController {
             wheelAnimations.get(i).getNode().setRotate(0);
         }
 
+        // Reset all result labels
         finishOrder.clear();
         raceFinished = false;
         resultsTitleLabel.setText("Race Results");
@@ -226,10 +228,13 @@ public class CarRaceController {
         raceFinishedLabel.setText("Race Finished!");
     }
     
+    // Set up the speed slider
     private void setupSpeedSlider() {
         speedSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
             double speed = newValue.doubleValue();
             speedValueLabel.setText(speed + "x");
+            
+             // Update the duration of each car animation
             for (int i = 0; i < animations.size(); i++) {
                 animations.get(i).setDuration(
                     Duration.seconds(10 / (cars.get(i).getSpeed() * speed))

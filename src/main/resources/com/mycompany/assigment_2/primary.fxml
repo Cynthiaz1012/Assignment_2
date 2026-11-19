@@ -58,7 +58,7 @@
                   </HBox>
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="420.0" spacing="10.0">
+            <VBox prefHeight="200.0" prefWidth="420.0" spacing="10.0">
                <children>
                   <Label fx:id="raceFinishedLabel" />
                   <Label fx:id="resultsTitleLabel" text="Final Results:" />

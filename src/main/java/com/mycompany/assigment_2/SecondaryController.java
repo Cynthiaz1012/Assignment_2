@@ -7,53 +7,66 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.animation.Timeline;
 import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.util.Duration;
 
 public class SecondaryController {
 
     @FXML
-    private ImageView carImage;
-    private int currentImage = 0;
-    private String[] carImages = {"car23.png", "car45.png", "car78.png","car88.png"};
+    private ImageView carImageView;
+
+    private int currentCar = 0;
+
+    private String[] carImages = {
+        "car23.png",
+        "car45.png",
+        "car78.png",
+        "car88.png"
+    };
+
     private Timeline slideshow;
-    private MediaPlayer mediaPlayer;
+    private MediaPlayer musicPlayer;
 
     @FXML
     public void initialize() {
-        showImage();
+        showCar();
 
-        slideshow = new Timeline(new KeyFrame(Duration.seconds(3), event -> {
-                currentImage++;
+        slideshow = new Timeline(new KeyFrame(Duration.seconds(3), e -> {
 
-                if (currentImage >= carImages.length) {
-                    currentImage = 0;
+                if (currentCar < carImages.length - 1) {
+                    currentCar++;
+                    showCar();
                 }
-
-                showImage();
             })
         );
 
-        slideshow.setCycleCount(Timeline.INDEFINITE);
-        slideshow.play();
-        String musicPath = getClass().getResource("race-music.mp3").toExternalForm();
+        slideshow.setCycleCount(carImages.length);
+        slideshow.setOnFinished(e -> {
+            try {
+                switchToPrimary();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+
+        String musicPath = getClass().getResource("/com/mycompany/assigment_2/car_race_music.wav").toExternalForm();
         Media music = new Media(musicPath);
-        mediaPlayer = new MediaPlayer(music);
-        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-        mediaPlayer.play();
+        musicPlayer = new MediaPlayer(music);
+        slideshow.play();
+        musicPlayer.play();
     }
 
-    private void showImage() {
-        String imagePath = getClass().getResource(carImages[currentImage]).toExternalForm();
+    private void showCar() {
+        String imagePath = getClass().getResource("/com/mycompany/assigment_2/" + carImages[currentCar]).toExternalForm();
         Image image = new Image(imagePath);
-        carImage.setImage(image);
+        carImageView.setImage(image);
     }
 
     @FXML
     private void switchToPrimary() throws IOException {
         slideshow.stop();
-        mediaPlayer.stop();
+        musicPlayer.stop();
         App.setRoot("primary");
     }
 }

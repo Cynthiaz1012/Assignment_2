@@ -16,8 +16,9 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.animation.TranslateTransition;
 import javafx.util.Duration;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.animation.RotateTransition;
+import javafx.animation.Interpolator;
+
 
 public class CarRaceController {
 
@@ -57,6 +58,8 @@ public class CarRaceController {
     private ArrayList<TranslateTransition> animations = new ArrayList<>();
     
     private ArrayList<CarRaceModel> finishOrder = new ArrayList<>();
+    
+    private ArrayList<RotateTransition> wheelAnimations = new ArrayList<>();
   
     public void initialize() {
         cars.add(new CarRaceModel("Sports Car", 23, 60, 20, 2.0, Color.BLUE));
@@ -103,11 +106,27 @@ public class CarRaceController {
         Line line2 = new Line(62, 25, 62, 19);
         line1.setStroke(Color.WHITE);
         line2.setStroke(Color.WHITE);
+        
+        Group wheelGroup1 = new Group(wheel1, line1);
+        Group wheelGroup2 = new Group(wheel2, line2);
+
+        RotateTransition rotate1 = new RotateTransition(Duration.seconds(0.5), wheelGroup1);
+        rotate1.setByAngle(360);
+        rotate1.setCycleCount(RotateTransition.INDEFINITE);
+        rotate1.setInterpolator(Interpolator.LINEAR);
+
+        RotateTransition rotate2 = new RotateTransition(Duration.seconds(0.5), wheelGroup2);
+        rotate2.setByAngle(360);
+        rotate2.setCycleCount(RotateTransition.INDEFINITE);
+        rotate2.setInterpolator(Interpolator.LINEAR);
+
+        wheelAnimations.add(rotate1);
+        wheelAnimations.add(rotate2);
 
         // Car number
         Text number = new Text(34, 20, String.valueOf(car.getNumber()));
         number.setFill(Color.WHITE);
-        group.getChildren().addAll(body, roof, window1, window2, wheel1, wheel2, line1, line2, number);
+        group.getChildren().addAll(body, roof, window1, window2, wheelGroup1, wheelGroup2, number);
         group.setLayoutX(car.getX());
         group.setLayoutY(car.getY());
 
@@ -127,6 +146,10 @@ public class CarRaceController {
                 finishOrder.add(car);
 
                 if (finishOrder.size() == cars.size()) {
+                    for (int j = 0; j < wheelAnimations.size(); j++) {
+                        wheelAnimations.get(j).stop();
+                    }
+
                     showResults();
                 }
             });
@@ -140,25 +163,32 @@ public class CarRaceController {
         for (int i = 0; i < animations.size(); i++) {
             animations.get(i).play();
         }
+
+        for (int i = 0; i < wheelAnimations.size(); i++) {
+            wheelAnimations.get(i).play();
+        }
     }
     
     
-     @FXML
+    @FXML
     private void pauseRace() {
         for (int i = 0; i < animations.size(); i++) {
             animations.get(i).pause();
+        }
+
+        for (int i = 0; i < wheelAnimations.size(); i++) {
+            wheelAnimations.get(i).pause();
         }
     }
     
     @FXML
     private void resetRace() {
-        for (int i = 0; i < animations.size(); i++) {
-            animations.get(i).stop();
-            animations.get(i).getNode().setTranslateX(0);
+        for (int i = 0; i < wheelAnimations.size(); i++) {
+            wheelAnimations.get(i).stop();
+            wheelAnimations.get(i).getNode().setRotate(0);
         }
         
         finishOrder.clear();
-        
         resultsTitleLabel.setText("Race Results");
         firstPlaceLabel.setText("1st Place: ");
         secondPlaceLabel.setText("2nd Place: ");

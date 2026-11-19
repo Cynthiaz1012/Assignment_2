@@ -7,7 +7,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.Pane;
 import java.util.ArrayList;
-import javafx.animation.Animation;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -56,16 +55,12 @@ public class CarRaceController {
     private ArrayList<TranslateTransition> animations = new ArrayList<>();
     
     private ArrayList<CarRaceModel> finishOrder = new ArrayList<>();
-
-    private void switchToSecondary() throws IOException {
-        App.setRoot("secondary");
-    }
-    
+  
     public void initialize() {
-        cars.add(new CarRaceModel("Sports Car", 23, 60, 20, 1.5, Color.BLUE));
+        cars.add(new CarRaceModel("Sports Car", 23, 60, 20, 2.0, Color.BLUE));
         cars.add(new CarRaceModel("Sports Car", 45, 60, 95, 1.8, Color.RED));
         cars.add(new CarRaceModel("Sports Car", 78, 60, 170, 1.6, Color.GREEN));
-        cars.add(new CarRaceModel("Sports Car", 88, 60, 245, 2.0, Color.YELLOW));
+        cars.add(new CarRaceModel("Sports Car", 88, 60, 245, 1.5, Color.YELLOW));
 
         for (int i = 0; i < cars.size(); i++) {
             Group car = createCar(cars.get(i));
@@ -124,7 +119,7 @@ public class CarRaceController {
             CarRaceModel car = cars.get(i);
             animation.setNode(carGroups.get(i));
             animation.setDuration(Duration.seconds(10 / car.getSpeed()));
-            animation.setByX(500);
+            animation.setByX(705);
 
             animation.setOnFinished(e -> {
                 finishOrder.add(car);

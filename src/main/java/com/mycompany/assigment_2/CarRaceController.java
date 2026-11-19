@@ -60,6 +60,8 @@ public class CarRaceController {
     private ArrayList<CarRaceModel> finishOrder = new ArrayList<>();
     
     private ArrayList<RotateTransition> wheelAnimations = new ArrayList<>();
+    
+    private boolean raceFinished = false;
   
     public void initialize() {
         cars.add(new CarRaceModel("Sports Car", 23, 60, 20, 2.0, Color.BLUE));
@@ -146,10 +148,11 @@ public class CarRaceController {
                 finishOrder.add(car);
 
                 if (finishOrder.size() == cars.size()) {
+                    raceFinished = true;
+
                     for (int j = 0; j < wheelAnimations.size(); j++) {
                         wheelAnimations.get(j).stop();
                     }
-
                     showResults();
                 }
             });
@@ -160,6 +163,11 @@ public class CarRaceController {
     
     @FXML
     private void startRace() {
+
+        if (raceFinished) {
+            return;
+        }
+
         for (int i = 0; i < animations.size(); i++) {
             animations.get(i).play();
         }
@@ -197,6 +205,7 @@ public class CarRaceController {
         }
 
         finishOrder.clear();
+        raceFinished = false;
         resultsTitleLabel.setText("Race Results");
         firstPlaceLabel.setText("1st Place: ");
         secondPlaceLabel.setText("2nd Place: ");
